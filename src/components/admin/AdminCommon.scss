@@ -1,0 +1,887 @@
+// Common styles for admin components
+
+// Variables for vibrant admin theme
+$admin-primary: #4a6cf7; // Vibrant blue
+$admin-secondary: #6c5ce7; // Purple
+$admin-accent: #00d2d3; // Teal
+$admin-success: #00b894; // Green
+$admin-warning: #fdcb6e; // Yellow
+$admin-danger: #ff7675; // Red
+$admin-info: #0abde3; // Light blue
+$admin-dark: #2d3436; // Dark gray
+$admin-text: #636e72; // Text color
+$admin-light: #f9f9f9; // Light gray
+$admin-white: #ffffff; // White
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $admin-primary, $admin-secondary);
+$gradient-secondary: linear-gradient(135deg, $admin-secondary, $admin-accent);
+$gradient-success: linear-gradient(135deg, $admin-success, $admin-accent);
+$gradient-danger: linear-gradient(135deg, $admin-danger, #ff9f43);
+
+// Table styles
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+  position: relative;
+  padding-bottom: 15px;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: $gradient-primary;
+    border-radius: 2px;
+  }
+
+  h2 {
+    margin: 0;
+    color: $admin-dark;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .add-button {
+    display: flex;
+    align-items: center;
+    background: $gradient-primary;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3);
+
+    svg {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(74, 108, 247, 0.4);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(74, 108, 247, 0.4);
+    }
+  }
+}
+
+.table-container {
+  background-color: $admin-white;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: $spacing-xl;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: $admin-primary;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      
+      &:first-child {
+        border-top-left-radius: 8px;
+      }
+      
+      &:last-child {
+        border-top-right-radius: 8px;
+      }
+    }
+
+    tr {
+      transition: background-color 0.2s ease;
+      
+      &:nth-child(even) {
+        background-color: rgba($admin-primary, 0.03);
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: rgba($admin-primary, 0.08);
+      }
+    }
+    
+    td {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+      color: $admin-dark;
+    }
+
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: $border-radius-md;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .no-image {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+      color: $admin-secondary;
+      font-size: 12px;
+      border-radius: $border-radius-md;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: currentColor;
+          opacity: 0.1;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+          
+          &:before {
+            opacity: 0.2;
+          }
+        }
+
+        &.edit-button {
+          color: $admin-primary;
+          
+          &:hover {
+            box-shadow: 0 4px 10px rgba($admin-primary, 0.3);
+          }
+        }
+
+        &.delete-button {
+          color: $admin-danger;
+          
+          &:hover {
+            box-shadow: 0 4px 10px rgba($admin-danger, 0.3);
+          }
+        }
+
+        &.view-button {
+          color: $admin-success;
+          
+          &:hover {
+            box-shadow: 0 4px 10px rgba($admin-success, 0.3);
+          }
+        }
+        
+        svg {
+          font-size: 18px;
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover svg {
+          transform: scale(1.2);
+        }
+        
+        &.members-button {
+          color: $admin-info;
+          padding: 0 12px;
+          width: auto;
+          border-radius: 18px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          
+          &:hover {
+            box-shadow: 0 4px 10px rgba($admin-info, 0.3);
+          }
+        }
+      }
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 90px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+
+      .cancelled-info {
+        display: block;
+        font-size: 10px;
+        font-weight: 400;
+        margin-top: 3px;
+        text-transform: none;
+        opacity: 0.9;
+        letter-spacing: 0.3px;
+      }
+
+      &.active {
+        background: linear-gradient(135deg, $admin-success, adjust-hue($admin-success, 15deg));
+        color: white;
+      }
+
+      &.inactive {
+        background: linear-gradient(135deg, $admin-danger, adjust-hue($admin-danger, 15deg));
+        color: white;
+      }
+
+      &.pending {
+        background: linear-gradient(135deg, $admin-warning, adjust-hue($admin-warning, 15deg));
+        color: $admin-dark;
+      }
+      
+      &.completed {
+        background: linear-gradient(135deg, $admin-primary, $admin-secondary);
+        color: white;
+      }
+      
+      &.draft {
+        background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+        color: white;
+      }
+    }
+
+    .star-rating {
+      display: flex;
+      align-items: center;
+
+      .star {
+        color: #ddd;
+        margin-right: 2px;
+
+        &.filled {
+          color: #f1c40f;
+        }
+      }
+    }
+  }
+}
+
+// Modal styles
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s ease-out forwards;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid white;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, rgba($admin-primary, 0.3), transparent);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $admin-dark;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      svg {
+        color: $admin-primary;
+      }
+    }
+
+    .modal-close-btn {
+      background: rgba(0, 0, 0, 0.05);
+      border: none;
+      font-size: 1.2rem;
+      line-height: 1;
+      color: $admin-dark;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba($admin-danger, 0.1);
+        color: $admin-danger;
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .form-container {
+    background-color: $admin-white;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    padding: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .form-title {
+      margin-top: 0;
+      margin-bottom: $spacing-xl;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $admin-dark;
+      position: relative;
+      padding-bottom: 15px;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background: $gradient-primary;
+        border-radius: 2px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: $spacing-lg;
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: $admin-dark;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+      }
+
+      input[type='text'],
+      input[type='email'],
+      input[type='password'],
+      input[type='number'],
+      input[type='date'],
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: $border-radius-md;
+        font-size: $font-size-md;
+        transition: all 0.3s ease;
+        background-color: rgba($admin-light, 0.5);
+        color: $admin-dark;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+
+        &:focus {
+          outline: none;
+          border-color: $admin-primary;
+          box-shadow: 0 0 0 3px rgba($admin-primary, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+          background-color: $admin-white;
+        }
+        
+        &:hover {
+          border-color: rgba($admin-primary, 0.5);
+        }
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+
+      &.checkbox {
+        display: flex;
+        align-items: center;
+
+        input[type="checkbox"] {
+          margin-right: 10px;
+        }
+
+        label {
+          margin-bottom: 0;
+        }
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .file-input-label {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        background-color: #f1f1f1;
+        color: $secondary-color;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        transition: background-color $transition-fast;
+
+        svg {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          background-color: #e1e1e1;
+        }
+      }
+
+      .image-preview {
+        margin-top: 12px;
+        max-width: 100%;
+        border-radius: $border-radius-sm;
+        overflow: hidden;
+
+        img {
+          max-width: 100%;
+          max-height: 200px;
+          display: block;
+        }
+      }
+
+      small {
+        display: block;
+        margin-top: 4px;
+        color: #999;
+        font-size: $font-size-xs;
+      }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+
+      .form-group {
+        flex: 1;
+      }
+
+      @media (max-width: $breakpoint-sm) {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+
+      button {
+        padding: 10px 20px;
+        border-radius: $border-radius-md;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color $transition-fast;
+
+        &.cancel-button {
+          background-color: #f1f1f1;
+          color: $secondary-color;
+          border: none;
+
+          &:hover {
+            background-color: #e1e1e1;
+          }
+        }
+
+        &.save-button {
+          background-color: $primary-color;
+          color: white;
+          border: none;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 25px;
+    
+    &.with-padding-bottom {
+      padding-bottom: 30px;
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px 25px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, rgba($admin-primary, 0.1), transparent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        
+        &:before {
+          opacity: 1;
+        }
+      }
+      
+      &:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      &.btn-primary {
+        background: $gradient-primary;
+        color: white;
+
+        &:hover {
+          background: linear-gradient(135deg, darken($admin-primary, 5%), darken($admin-secondary, 5%));
+        }
+      }
+
+      &.btn-secondary {
+        background: $gradient-secondary;
+        color: white;
+
+        &:hover {
+          background: linear-gradient(135deg, darken($admin-secondary, 5%), darken($admin-accent, 5%));
+        }
+      }
+
+      &.btn-success {
+        background: $gradient-success;
+        color: white;
+
+        &:hover {
+          background: linear-gradient(135deg, darken($admin-success, 5%), darken(adjust-hue($admin-success, 15deg), 5%));
+        }
+      }
+
+      &.btn-danger {
+        background: $gradient-danger;
+        color: white;
+
+        &:hover {
+          background: linear-gradient(135deg, darken($admin-danger, 5%), darken(adjust-hue($admin-danger, 15deg), 5%));
+        }
+      }
+
+      &.btn-outline {
+        background: transparent;
+        border: 2px solid $admin-primary;
+        color: $admin-primary;
+        box-shadow: none;
+
+        &:hover {
+          background: rgba($admin-primary, 0.05);
+          border-color: darken($admin-primary, 10%);
+          color: darken($admin-primary, 10%);
+        }
+      }
+      
+      &.btn-sm {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+      
+      &.btn-lg {
+        padding: 15px 30px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .members-list {
+    padding: 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .member-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #e9ecef;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .member-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 16px;
+      }
+
+      .member-info {
+        h4 {
+          margin: 0 0 4px;
+          font-size: $font-size-md;
+        }
+
+        p {
+          margin: 0;
+          color: #666;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+
+    .no-members {
+      text-align: center;
+      color: #999;
+      padding: 20px;
+    }
+  }
+
+  .review-details {
+    padding: 20px;
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      .review-user {
+        display: flex;
+        align-items: center;
+
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: $primary-color;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          margin-right: 16px;
+        }
+
+        .user-info {
+          h4 {
+            margin: 0 0 4px;
+            font-size: $font-size-md;
+          }
+
+          p {
+            margin: 0;
+            color: #666;
+            font-size: $font-size-sm;
+          }
+        }
+      }
+
+      .review-meta {
+        text-align: right;
+
+        .review-rating {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          margin-bottom: 4px;
+
+          .rating-value {
+            margin-left: 8px;
+            font-weight: 600;
+          }
+        }
+
+        .review-date {
+          color: #666;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+
+    .review-content,
+    .trip-details {
+      margin-bottom: 20px;
+
+      h4 {
+        margin: 0 0 8px;
+        color: $secondary-color;
+      }
+
+      p {
+        margin: 0 0 8px;
+        line-height: 1.5;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

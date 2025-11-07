@@ -1,0 +1,594 @@
+// Variables
+$primary-color: #3a86ff;
+$secondary-color: #4cc9f0;
+$accent-color: #ff006e;
+$success-color: #06d6a0;
+$warning-color: #ffbe0b;
+$text-dark: #2b2d42;
+$text-medium: #5c6784;
+$text-light: #8d99ae;
+$background-light: #f8f9fa;
+$background-color: #ffffff;
+$transition: all 0.25s ease;
+
+// Mixins
+@mixin button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: $text-medium;
+}
+
+.trip-dashboard {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: $text-dark;
+  background: $background-light;
+
+  .dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-top: 1rem;
+
+    .success-message {
+      background-color: $success-color;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+
+    .error-message {
+      background-color: $accent-color;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba($text-light, 0.2);
+      
+      .left-buttons {
+        display: flex;
+        align-items: center;
+      }
+      
+      .right-buttons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .back-button {
+        @include button;
+        background: $background-light;
+        color: $text-medium;
+        font-size: 0.9rem;
+        
+        &:hover {
+          background: $primary-color;
+          color: white;
+        }
+      }
+
+      .cancel-button {
+        @include button;
+        background: $accent-color;
+        color: white;
+        font-size: 0.9rem;
+        
+        &:hover {
+          background: darken($accent-color, 10%);
+        }
+
+        &.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          
+          &:hover {
+            background: $accent-color;
+          }
+        }
+      }
+
+      .leave-button {
+        @include button;
+        background: $warning-color;
+        color: $text-dark;
+        font-size: 0.9rem;
+        
+        &:hover {
+          background: darken($warning-color, 10%);
+        }
+
+        &.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          
+          &:hover {
+            background: $warning-color;
+          }
+        }
+      }
+      
+      .secondary-button {
+        @include button;
+        background: $background-light;
+        color: $text-medium;
+        border: 1px solid $text-light;
+        font-size: 0.9rem;
+        
+        &:hover {
+          background: darken($background-light, 5%);
+          color: $accent-color;
+          border-color: $accent-color;
+        }
+
+        &.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          
+          &:hover {
+            background: $background-light;
+            color: $text-medium;
+            border-color: $text-light;
+          }
+        }
+      }
+    }
+  }
+
+  .trip-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    .trip-layout {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      
+      // Left side - Image container
+      .image-container {
+        flex: 0 0 40%;
+        position: sticky;
+        top: 2rem;
+        
+        .destination-image {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          display: block;
+        }
+      }
+      
+      // Right side - Content container
+      .content-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        
+        // Destination Title
+        .destination-title {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 2.4rem;
+          font-weight: 700;
+          color: $text-dark;
+          margin: 0 0 1rem 0;
+          line-height: 1.2;
+          letter-spacing: -0.5px;
+          position: relative;
+          padding-bottom: 0.5rem;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: $accent-color;
+          }
+        }
+        
+        // Dates Section
+        .dates-section {
+          margin-bottom: 1.5rem;
+          
+          .trip-dates {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: $text-dark;
+          }
+          
+          .countdown {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $accent-color;
+            margin: 0;
+          }
+        }
+        
+        // Two Column Section
+        .two-column-section {
+          display: flex;
+          gap: 2rem;
+          margin-bottom: 1.5rem;
+          
+          // Left Column - Activities
+          .activities-column {
+            flex: 1;
+            
+            h3 {
+              font-size: 1.2rem;
+              margin-bottom: 0.75rem;
+              color: $text-dark;
+              font-weight: 600;
+            }
+            
+            .activities-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+              
+              li {
+                padding: 0.4rem 0;
+                border-bottom: 1px solid rgba($text-light, 0.2);
+                color: $text-medium;
+                font-size: 1rem;
+                
+                &:last-child {
+                  border-bottom: none;
+                }
+              }
+            }
+          }
+          
+          // Right Column - Info
+          .info-column {
+            flex: 1;
+            
+            .creator-section {
+              margin-bottom: 1.5rem;
+              
+              h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+                color: $text-dark;
+                font-weight: 600;
+              }
+              
+              .creator-info {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                
+                .creator-avatar {
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                }
+                
+                span {
+                  font-weight: 500;
+                }
+              }
+              
+              .description-section {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px dashed rgba($text-light, 0.3);
+                
+                h4 {
+                  font-size: 1rem;
+                  margin-bottom: 0.5rem;
+                  color: $text-medium;
+                }
+                
+                p {
+                  font-size: 0.95rem;
+                  line-height: 1.5;
+                  color: $text-dark;
+                }
+              }
+            }
+            
+            .members-section {
+              margin-bottom: 1.5rem;
+              
+              .members-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5rem;
+                
+                h3 {
+                  font-size: 1.2rem;
+                  margin: 0;
+                  color: $text-dark;
+                  font-weight: 600;
+                }
+                
+                .view-buddies-button {
+                  @include button;
+                  background: $primary-color;
+                  color: white;
+                  font-size: 0.8rem;
+                  padding: 0.5rem 1rem;
+                  border-radius: 4px;
+                  
+                  &:hover {
+                    background: darken($primary-color, 10%);
+                  }
+                }
+              }
+              
+              .spots {
+                margin-bottom: 0.75rem;
+                color: $text-medium;
+                font-size: 0.9rem;
+              }
+              
+              .member-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+                
+                .member-item {
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  
+                  img {
+                    width: 30px;
+                    height: 30px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                  }
+                  
+                  span {
+                    font-size: 0.9rem;
+                    color: $text-medium;
+                  }
+                }
+              }
+            }
+            
+            .chat-button {
+              padding: 0.75rem 1.25rem;
+              background-color: $primary-color;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+              align-self: flex-start;
+              
+              &:hover {
+                background-color: darken($primary-color, 10%);
+              }
+            }
+          }
+        }
+        
+        // Description Section
+        .description-section {
+          width: 100%;
+          margin-top: 0;
+          padding-top: 0;
+          
+          p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $text-medium;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .confirmation-modal {
+    padding: 1rem;
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      
+      button {
+        @include button;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        border-radius: 4px;
+      }
+      
+      .cancel-button {
+        background-color: $accent-color;
+        color: white;
+        
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+      
+      .back-button {
+        background-color: $text-light;
+        color: white;
+        
+        &:hover {
+          background-color: darken($text-light, 10%);
+        }
+      }
+      
+      .leave-button {
+        background-color: $warning-color;
+        color: $text-dark;
+        
+        &:hover {
+          background-color: darken($warning-color, 10%);
+        }
+      }
+      
+      .remove-button {
+        background-color: $accent-color;
+        color: white;
+        
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+        
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          
+          &:hover {
+            background-color: $accent-color;
+          }
+        }
+      }
+    }
+  }
+  
+  // Buddies Modal Styles
+  .buddies-modal {
+    padding: 1rem;
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: $text-medium;
+    }
+    
+    .buddies-list {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+      
+      .buddy-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border-bottom: 1px solid rgba($text-light, 0.2);
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        .buddy-info {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          
+          .buddy-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          
+          span {
+            font-weight: 500;
+            font-size: 0.95rem;
+          }
+        }
+        
+        .remove-buddy-button {
+          @include button;
+          background-color: $accent-color;
+          color: white;
+          font-size: 0.8rem;
+          padding: 0.4rem 0.75rem;
+          border-radius: 4px;
+          
+          &:hover {
+            background-color: darken($accent-color, 10%);
+          }
+          
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            
+            &:hover {
+              background-color: $accent-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 992px) {
+    padding: 1.5rem;
+
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .header-buttons {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    .trip-container {
+      .trip-layout {
+        flex-direction: column;
+
+        .image-container {
+          position: relative;
+          top: 0;
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+
+        .content-container {
+          width: 100%;
+
+          .two-column-section {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}

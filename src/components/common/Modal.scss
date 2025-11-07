@@ -1,0 +1,83 @@
+// Variables (matching the main theme)
+$primary-color: #3a86ff;
+$secondary-color: #4cc9f0;
+$accent-color: #ff006e;
+$success-color: #06d6a0;
+$warning-color: #ffbe0b;
+$text-dark: #2b2d42;
+$text-medium: #5c6784;
+$text-light: #8d99ae;
+$background-light: #f8f9fa;
+$background-color: #ffffff;
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+$border-radius: 10px;
+$transition: all 0.25s ease;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-container {
+  background-color: $background-color;
+  border-radius: $border-radius;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modal-appear 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba($text-light, 0.2);
+  
+  h3 {
+    margin: 0;
+    color: $text-dark;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: $text-medium;
+    cursor: pointer;
+    transition: $transition;
+    
+    &:hover {
+      color: $accent-color;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,22 @@
+// Custom styles for TripManagement component
+
+.btn-members {
+  background-color: rgba(10, 189, 227, 0.1) !important; // Light blue background
+  color: #0abde3 !important; // Blue text
+  border-radius: 4px !important; // More rectangular
+  padding: 8px 16px !important; // More padding for a larger button
+  font-weight: 600 !important;
+  border: 1px solid rgba(10, 189, 227, 0.2) !important; // Subtle border
+  min-width: 60px !important; // Ensure minimum width
+  text-align: center !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    background-color: rgba(10, 189, 227, 0.2) !important; // Slightly darker on hover
+    box-shadow: 0 2px 5px rgba(10, 189, 227, 0.2) !important; // Add shadow on hover
+  }
+
+  svg {
+    margin-right: 8px !important;
+  }
+}

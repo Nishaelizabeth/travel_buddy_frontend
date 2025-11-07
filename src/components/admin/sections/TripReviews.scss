@@ -1,0 +1,57 @@
+.review-rating-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  
+  .rating-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    
+    .star-rating {
+      display: inline-flex;
+      margin-left: 5px;
+      
+      .star {
+        font-size: 18px;
+        &.filled {
+          color: #FFD700;  // Gold color for filled stars
+        }
+      }
+    }
+  }
+  
+  .comment-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    
+    strong {
+      margin-right: 5px;
+    }
+  }
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  
+  .star {
+    font-size: 16px;
+    margin-right: 2px;
+    
+    &.filled {
+      color: #FFD700;  // Gold color for filled stars
+    }
+  }
+}
+
+.review-details {
+  padding: 15px;
+  
+  p {
+    margin-bottom: 8px;
+  }
+}

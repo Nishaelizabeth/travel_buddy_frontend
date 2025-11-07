@@ -1,0 +1,305 @@
+// Travel-themed color palette
+$primary-color: #0099ff; // Ocean blue
+$secondary-color: #ff6b6b; // Sunset coral
+$accent-color: #33cc99; // Tropical green
+$warm-accent: #ffbe0b; // Sunny yellow
+$deep-accent: #8338ec; // Adventure purple
+$text-dark: #2d3748;
+$text-medium: #4a5568;
+$text-light: #a0aec0;
+$background-color: #f8f9fa;
+$card-bg: #ffffff;
+
+// Mixins
+@mixin card-shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 6px 10px rgba(0, 0, 0, 0.05);
+}
+
+@mixin gradient-bg($start-color, $end-color) {
+  background: linear-gradient(135deg, $start-color 0%, $end-color 100%);
+}
+
+@mixin hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.destinations-page {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: $background-color;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: $text-dark;
+    font-size: 2.8rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    
+    svg {
+      color: $primary-color;
+    }
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: $primary-color;
+      border-radius: 0; // Rectangular style
+    }
+  }
+
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 0.5rem;
+    margin-top: 2rem;
+    animation: fadeIn 0.8s ease-out;
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  .destination-card {
+    background: $card-bg;
+    border-radius: 0; // Rectangular cards with no curved corners
+    overflow: hidden;
+    @include card-shadow;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border-color: rgba($primary-color, 0.2);
+    }
+    
+    // Removed the decorative line above the image
+    // The image will now start directly at the top of the card
+
+    .destination-image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        z-index: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        filter: brightness(0.95);
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+        filter: brightness(1.05);
+      }
+    }
+
+    .destination-info {
+      padding: 1.8rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+
+      h2 {
+        margin: 0 0 0.5rem;
+        color: $text-dark;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      p {
+        color: $text-medium;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        
+        svg {
+          color: $secondary-color;
+        }
+      }
+
+      .view-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: $primary-color;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0; // Rectangular button
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+        align-self: flex-start;
+        position: relative;
+        overflow: hidden;
+        
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 15px rgba($primary-color, 0.4);
+          
+          &:before {
+            transform: translateX(0);
+          }
+        }
+        
+        svg {
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+
+  .loading, .error {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    border-radius: 16px;
+    background-color: $card-bg;
+    @include card-shadow;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .loading {
+    color: $text-medium;
+    
+    &:before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      margin-bottom: 1.5rem;
+      border: 4px solid rgba($primary-color, 0.2);
+      border-radius: 50%;
+      border-top-color: $primary-color;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .error {
+    color: $secondary-color;
+    background-color: rgba($secondary-color, 0.05);
+    border: 1px solid rgba($secondary-color, 0.1);
+  }
+}
+
+// Responsive design
+@media (max-width: 992px) {
+  .destinations-page {
+    padding: 2rem 1.5rem;
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .destinations-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .destinations-page {
+    padding: 1.5rem 1rem;
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      
+      &:after {
+        width: 80px;
+      }
+    }
+    
+    .destinations-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .destinations-page {
+    padding: 1rem;
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    .destinations-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.notification-item {
+    .notification-content {
+        cursor: pointer;
+        transition: background-color 0.2s;
+        padding: 10px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .notification-unread {
+            color: #1a73e8;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .notification-time {
+            font-size: 0.8rem;
+            color: #666;
+        }
+    }
+}
