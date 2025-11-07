@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/travel_buddy_frontend/static/css/main.c597d072.css",
-    "main.js": "/travel_buddy_frontend/static/js/main.83bf6c2e.js",
+    "main.js": "/travel_buddy_frontend/static/js/main.59f970da.js",
     "static/js/453.4f3d44cd.chunk.js": "/travel_buddy_frontend/static/js/453.4f3d44cd.chunk.js",
     "static/media/signup bg.mp4": "/travel_buddy_frontend/static/media/signup bg.f3a59e4c1a20ffda83e2.mp4",
     "static/media/bg.mp4": "/travel_buddy_frontend/static/media/bg.f6ce2ddc2a6b8895d31e.mp4",
@@ -13,11 +13,11 @@
     "static/media/home1.jpg": "/travel_buddy_frontend/static/media/home1.394af99799c13c7ff2fd.jpg",
     "index.html": "/travel_buddy_frontend/index.html",
     "main.c597d072.css.map": "/travel_buddy_frontend/static/css/main.c597d072.css.map",
-    "main.83bf6c2e.js.map": "/travel_buddy_frontend/static/js/main.83bf6c2e.js.map",
+    "main.59f970da.js.map": "/travel_buddy_frontend/static/js/main.59f970da.js.map",
     "453.4f3d44cd.chunk.js.map": "/travel_buddy_frontend/static/js/453.4f3d44cd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c597d072.css",
-    "static/js/main.83bf6c2e.js"
+    "static/js/main.59f970da.js"
   ]
 }
