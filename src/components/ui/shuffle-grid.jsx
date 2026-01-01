@@ -10,21 +10,20 @@ export const ShuffleHero = () => {
         <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
             <div>
                 <span className="block mb-4 text-xs md:text-sm text-primary font-medium">
-                    Better every day
+                    Find Your Perfect Travel Buddy & Plan Your Next Adventure!
                 </span>
                 <h3 className="text-4xl md:text-6xl font-semibold text-foreground">
-                    Let's change it up a bit
+                    HORIZON
                 </h3>
                 <p className="text-base md:text-lg text-muted-foreground my-4 md:my-6">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-                    error repellat voluptatibus ad.
+                    Join a community of travelers, create or join trips, and meet like-minded companions effortlessly.
                 </p>
                 <button className={cn(
                     "bg-primary text-primary-foreground font-medium py-2 px-4 rounded-md",
                     "transition-all hover:bg-primary/90 active:scale-95",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 )}>
-                    Find a class
+                    Sign Up Now
                 </button>
             </div>
             <ShuffleGrid />

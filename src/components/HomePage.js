@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { ShuffleHero } from './ui/shuffle-grid.jsx';
-import homeVideo from '../Assets/homevideo.mp4';
+import InfiniteGallery from './ui/3d-gallery-photography.jsx';
 import home1 from '../Assets/home1.jpg';
 import home2 from '../Assets/home2.jpg';
 import home3 from '../Assets/home3.jpg';
 import home4 from '../Assets/home4.jpeg';
 import home5 from '../Assets/home5.jpeg';
 import axiosInstance from '../utils/axiosConfig';
-import { FaStar, FaRegStar, FaQuoteLeft, FaMapMarkerAlt, FaCompass, FaPlane } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaQuoteLeft } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -123,44 +123,27 @@ const HomePage = () => {
       {/* Hero Section */}
       <ShuffleHero />
 
-      {/* How It Works Section */}
-      <section className="how-it-works-section">
-        <div className="section-header">
-          <h2 className="fancy-title">How It Works</h2>
-          <p>Your journey to finding the perfect travel companion is just a few steps away</p>
-        </div>
-        <div className="steps-container row-layout">
-          <div className="step">
-            <div className="step-icon">
-              <FaCompass />
-              <span>1</span>
-            </div>
-            <h3>Sign Up & Set Preferences</h3>
-            <p>Create your profile and tell us about your travel style, interests, and preferences</p>
-          </div>
-          <div className="step">
-            <div className="step-icon">
-              <FaPlane />
-              <span>2</span>
-            </div>
-            <h3>Create or Join Trips</h3>
-            <p>Browse existing adventures or create your own dream journey to share with others</p>
-          </div>
-          <div className="step">
-            <div className="step-icon">
-              <FaMapMarkerAlt />
-              <span>3</span>
-            </div>
-            <h3>Match with Buddies</h3>
-            <p>Connect with travelers who share your interests and travel style</p>
-          </div>
-          <div className="step">
-            <div className="step-icon">
-              <span>4</span>
-            </div>
-            <h3>Chat & Travel Together</h3>
-            <p>Plan your adventure together and create memories that last a lifetime</p>
-          </div>
+      {/* 3D Gallery Section */}
+      <section className="gallery-section" style={{ position: 'relative', height: '600px', width: '100%' }}>
+        <InfiniteGallery
+          images={[
+            { src: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&auto=format&fit=crop', alt: 'Beach sunset' },
+            { src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&auto=format&fit=crop', alt: 'Mountain lake' },
+            { src: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&auto=format&fit=crop', alt: 'Travel adventure' },
+            { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&auto=format&fit=crop', alt: 'Nature landscape' },
+            { src: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&auto=format&fit=crop', alt: 'City skyline' },
+            { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop', alt: 'Tropical beach' },
+            { src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop', alt: 'Mountain view' },
+            { src: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&auto=format&fit=crop', alt: 'Forest path' },
+          ]}
+          speed={1.2}
+          visibleCount={12}
+          className="h-full w-full"
+        />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '12px', color: '#1f2937' }}>
+          <h1 style={{ fontFamily: 'serif', fontSize: '4rem', letterSpacing: '-0.02em', textShadow: '2px 2px 4px rgba(255,255,255,0.5)' }}>
+            <span style={{ fontStyle: 'italic' }}>Explore</span>
+          </h1>
         </div>
       </section>
 
@@ -315,13 +298,6 @@ const HomePage = () => {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-video-container">
-          <video autoPlay muted loop className="footer-video">
-            <source src={homeVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div className="footer-overlay"></div>
-        </div>
         <div className="footer-content">
           <div className="footer-logo-section">
             <h2>Travel Buddy</h2>
