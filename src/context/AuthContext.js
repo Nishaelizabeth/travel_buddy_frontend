@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
                 throw new Error('No refresh token available');
             }
 
-            const response = await fetch('https://travel-buddy-backend-0jf1.onrender.com/api/token/refresh/', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/token/refresh/`, {
 
 
                 method: 'POST',

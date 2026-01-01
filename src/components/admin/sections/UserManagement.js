@@ -16,7 +16,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/admin/users/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/users/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

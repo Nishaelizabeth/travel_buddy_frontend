@@ -285,7 +285,7 @@ const DestinationDetails = () => {
                 >
                   <div className="activity-content">
 
-                    <img src={`https://travel-buddy-backend-0jf1.onrender.com${activity.image}`} alt={activity.name} />
+                    <img src={`${process.env.REACT_APP_API_BASE_URL}${activity.image}`} alt={activity.name} />
 
                     <span>{activity.name}</span>
                   </div>

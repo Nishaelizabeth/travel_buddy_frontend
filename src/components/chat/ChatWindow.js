@@ -53,8 +53,7 @@ const ChatWindow = ({ tripId, isOpen, onClose }) => {
     
     // Get WebSocket URL from environment variables or use default
 
-    const wsBaseUrl = process.env.REACT_APP_WEBSOCKET_URL || 'wss://travel-buddy-backend-0jf1.onrender.com/ws';
-
+    const wsBaseUrl = process.env.REACT_APP_WEBSOCKET_URL || `${process.env.REACT_APP_WEBSOCKET_URL}`;
     
     // Build the WebSocket URL - try multiple options with different formats
     // Option 1: Using the environment variable with trailing slash

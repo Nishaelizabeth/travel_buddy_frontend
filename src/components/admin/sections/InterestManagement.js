@@ -24,7 +24,7 @@ const InterestManagement = () => {
   const fetchInterests = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/admin/interests/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/interests/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ const InterestManagement = () => {
       // Process the interests to add proper image URLs
       const processedInterests = response.data.map(interest => ({
         ...interest,
-        image_url: interest.image ? `https://travel-buddy-backend-0jf1.onrender.com${interest.image}` : null
+        image_url: interest.image ? `${process.env.REACT_APP_API_BASE_URL}${interest.image}` : null
       }));
       
       setInterests(processedInterests);
@@ -65,7 +65,7 @@ const InterestManagement = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      await axios.delete(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/interests/${selectedInterest.id}/`, {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/admin/interests/${selectedInterest.id}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -112,7 +112,7 @@ const InterestManagement = () => {
 
       if (selectedInterest) {
         // Update existing interest
-        const updateResponse = await axios.put(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/interests/${selectedInterest.id}/`, formDataToSend, {
+        const updateResponse = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/admin/interests/${selectedInterest.id}/`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -134,7 +134,7 @@ const InterestManagement = () => {
         toast.success('Travel interest updated successfully');
       } else {
         // Create new interest
-        await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/admin/interests/', formDataToSend, {
+        await axios.post(`${process.env.REACT_APP_API_BASE_URL}/admin/interests/`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'

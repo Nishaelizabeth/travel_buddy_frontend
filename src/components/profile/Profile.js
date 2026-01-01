@@ -65,7 +65,7 @@ const Profile = () => {
 
         // Get user profile - log response for debugging
         console.log('Fetching profile data...');
-        axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/profile/', {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile/`, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ const Profile = () => {
             } else {
                 console.log('No phone number found in response');
                 // Make an additional request to ensure we get the phone number
-                return axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/profile/?include_phone=true', {
+                return axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile/?include_phone=true`, {
                     headers: { 
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ const Profile = () => {
             return;
         }
 
-        axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/update-preferences/', preferences, {
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/update-preferences/`, preferences, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -188,7 +188,7 @@ const Profile = () => {
         // Log the data being sent to the backend
         console.log('Sending profile data to backend:', editData);
 
-        axios.put('https://travel-buddy-backend-0jf1.onrender.com/api/update-profile/', editData, {
+        axios.put(`${process.env.REACT_APP_API_BASE_URL}/update-profile/`, editData, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -196,7 +196,7 @@ const Profile = () => {
         })
         .then(response => {
             // Get fresh profile data from the server
-            return axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/profile/', {
+            return axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile/`, {
                 headers: { 
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -264,7 +264,7 @@ const Profile = () => {
             return;
         }
 
-        axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/change-password/', passwordData, {
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/change-password/`, passwordData, {
             headers: { 
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

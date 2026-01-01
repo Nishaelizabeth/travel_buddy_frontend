@@ -78,7 +78,7 @@ const SignIn = () => {
 
     try {
 
-      const response = await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/login/', {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login/`, {
 
         usernameOrEmail: formData.usernameOrEmail,
         password: formData.password,

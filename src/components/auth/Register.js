@@ -97,7 +97,7 @@ const Register = () => {
       });
 
 
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/register/', formDataToSend, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register/`, formDataToSend, {
 
         headers: { 'Content-Type': 'multipart/form-data' },
       });

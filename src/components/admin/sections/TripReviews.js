@@ -18,7 +18,7 @@ const TripReviews = () => {
   const fetchReviews = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/admin/reviews/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/reviews/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const TripReviews = () => {
       const token = localStorage.getItem('accessToken');
       
       // Fetch detailed review data
-      const reviewResponse = await axios.get(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/reviews/${review.id}/`, {
+      const reviewResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/reviews/${review.id}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const TripReviews = () => {
       // If the review contains a trip ID, fetch detailed trip information
       if (reviewData.trip && typeof reviewData.trip === 'object' && reviewData.trip.id) {
         try {
-          const tripResponse = await axios.get(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/trips/${reviewData.trip.id}/`, {
+          const tripResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/trips/${reviewData.trip.id}/`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const TripReviews = () => {
       // If the review contains a user ID, fetch detailed user information
       if (reviewData.user && typeof reviewData.user === 'object' && reviewData.user.id) {
         try {
-          const userResponse = await axios.get(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/users/${reviewData.user.id}/`, {
+          const userResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/users/${reviewData.user.id}/`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ const TripReviews = () => {
     if (window.confirm('Are you sure you want to delete this review?')) {
       try {
         const token = localStorage.getItem('accessToken');
-        await axios.delete(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/reviews/${reviewId}/`, {
+        await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/admin/reviews/${reviewId}/`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

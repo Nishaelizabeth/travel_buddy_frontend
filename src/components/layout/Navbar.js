@@ -27,7 +27,7 @@ const Navbar = () => {
             
             // Call logout endpoint
 
-            await fetch('https://travel-buddy-backend-0jf1.onrender.com/api/logout/', {
+            await fetch(`${process.env.REACT_APP_API_BASE_URL}/logout/`, {
 
                 method: 'POST',
                 headers: {

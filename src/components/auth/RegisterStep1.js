@@ -153,7 +153,7 @@ const RegisterStep1 = ({ formData, setFormData, errors, setErrors, onNext, backe
     
     try {
 
-      const response = await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/validate-field/', {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/validate-field/`, {
 
         field_name: fieldName,
         field_value: value

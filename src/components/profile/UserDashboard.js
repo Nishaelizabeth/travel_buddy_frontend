@@ -158,7 +158,7 @@ const UserDashboard = () => {
       
       // Fetch trip notifications from the backend
       console.log('Making API call to fetch trip notifications...');
-      const tripNotificationsResponse = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/', {
+      const tripNotificationsResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/notifications/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -190,7 +190,7 @@ const UserDashboard = () => {
       setTripNotifications(fetchedTripNotifications);
       
       // Fetch unread trip notification count
-      const unreadTripCountResponse = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/unread-count/', {
+      const unreadTripCountResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/notifications/unread-count/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -202,7 +202,7 @@ const UserDashboard = () => {
       
       // Fetch chat notifications from the backend
       console.log('Making API call to fetch chat notifications...');
-      const chatNotificationsResponse = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/chat-notifications/', {
+      const chatNotificationsResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat-notifications/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -235,7 +235,7 @@ const UserDashboard = () => {
       setChatNotifications(fetchedChatNotifications);
       
       // Fetch unread chat notification count
-      const unreadChatCountResponse = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/chat-notifications/unread-count/', {
+      const unreadChatCountResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat-notifications/unread-count/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -257,7 +257,7 @@ const UserDashboard = () => {
       const token = localStorage.getItem('accessToken');
       
       // Send request to mark notifications as read
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/notifications/`, 
         { notification_ids: notificationIds },
         {
           headers: {
@@ -309,7 +309,7 @@ const UserDashboard = () => {
       }
       
       // Send request to mark notifications as read
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/notifications/`, 
         { notification_ids: unreadNotificationIds },
         {
           headers: {
@@ -349,7 +349,7 @@ const UserDashboard = () => {
       }
       
       // Send request to clear all notifications
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/notifications/`, 
         { clear_all: true },
         {
           headers: {
@@ -390,7 +390,7 @@ const UserDashboard = () => {
       }
       
       // Send request to mark chat notifications as read
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/chat-notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat-notifications/`, 
         { notification_ids: unreadChatNotificationIds },
         {
           headers: {
@@ -430,7 +430,7 @@ const UserDashboard = () => {
       }
       
       // Send request to clear all chat notifications
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/chat-notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat-notifications/`, 
         { clear_all: true },
         {
           headers: {
@@ -686,7 +686,7 @@ const UserDashboard = () => {
       }
       
       // Send request to mark notification as read
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/notifications/`, 
         { notification_ids: [notificationId] },
         {
           headers: {
@@ -723,7 +723,7 @@ const UserDashboard = () => {
       }
       
       // Send request to mark chat notification as read
-      await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/chat-notifications/', 
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat-notifications/`, 
         { notification_ids: [notificationId] },
         {
           headers: {
@@ -965,7 +965,7 @@ const UserDashboard = () => {
               profilePicture = buddy.profile_picture;
             } else {
               // For relative URLs, construct the full URL
-              profilePicture = `https://travel-buddy-backend-0jf1.onrender.com${buddy.profile_picture}`;
+              profilePicture = `${process.env.REACT_APP_API_BASE_URL}${buddy.profile_picture}`;
             }
             console.log(`Profile picture for ${buddy.username}:`, profilePicture);
           }
@@ -998,7 +998,7 @@ const UserDashboard = () => {
                   if (member.profile_picture.startsWith('http')) {
                     profilePicture = member.profile_picture;
                   } else {
-                    profilePicture = `https://travel-buddy-backend-0jf1.onrender.com${member.profile_picture}`;
+                    profilePicture = `${process.env.REACT_APP_API_BASE_URL}${member.profile_picture}`;
                   }
                 }
                 
@@ -1026,7 +1026,7 @@ const UserDashboard = () => {
               if (trip.creator.profile_picture.startsWith('http')) {
                 profilePicture = trip.creator.profile_picture;
               } else {
-                profilePicture = `https://travel-buddy-backend-0jf1.onrender.com${trip.creator.profile_picture}`;
+                profilePicture = `${process.env.REACT_APP_API_BASE_URL}${trip.creator.profile_picture}`;
               }
             }
             
@@ -1051,7 +1051,7 @@ const UserDashboard = () => {
                   if (member.profile_picture.startsWith('http')) {
                     profilePicture = member.profile_picture;
                   } else {
-                    profilePicture = `https://travel-buddy-backend-0jf1.onrender.com${member.profile_picture}`;
+                    profilePicture = `${process.env.REACT_APP_API_BASE_URL}${member.profile_picture}`;
                   }
                 }
                 

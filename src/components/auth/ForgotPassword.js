@@ -51,7 +51,7 @@ const ForgotPassword = () => {
 
     try {
 
-      const response = await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/forgot-password/', {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/forgot-password/`, {
 
         email: formData.email,
       });

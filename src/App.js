@@ -31,7 +31,7 @@ function App() {
         try {
           const token = localStorage.getItem('accessToken');
 
-          const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/profile/', {
+          const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile/`, {
 
             headers: { 
               'Authorization': `Bearer ${token}`,

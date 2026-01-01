@@ -31,7 +31,7 @@ const DestinationManagement = () => {
   const fetchTravelInterests = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/travel-interests/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/travel-interests/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const DestinationManagement = () => {
   const fetchDestinations = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const DestinationManagement = () => {
     const getDestinationInterests = async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        const response = await axios.get(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/${destination.id}/interests/`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/${destination.id}/interests/`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -102,7 +102,7 @@ const DestinationManagement = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      await axios.delete(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/${selectedDestination.id}/`, {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/${selectedDestination.id}/`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -165,7 +165,7 @@ const DestinationManagement = () => {
 
       if (selectedDestination) {
         // Update existing destination
-        const updateResponse = await axios.put(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/${selectedDestination.id}/`, formDataToSend, {
+        const updateResponse = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/${selectedDestination.id}/`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -190,7 +190,7 @@ const DestinationManagement = () => {
         fetchDestinations();
       } else {
         // Create new destination
-        const response = await axios.post('https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/', formDataToSend, {
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -204,7 +204,7 @@ const DestinationManagement = () => {
 
       // Update travel interests for the destination
       try {
-        await axios.post(`https://travel-buddy-backend-0jf1.onrender.com/api/admin/destinations/${destinationId}/interests/`, {
+        await axios.post(`${process.env.REACT_APP_API_BASE_URL}/admin/destinations/${destinationId}/interests/`, {
           interests: selectedInterests
         }, {
           headers: {

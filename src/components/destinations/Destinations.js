@@ -14,7 +14,7 @@ const Destinations = () => {
     const fetchDestinations = async () => {
       try {
 
-        const response = await axios.get('https://travel-buddy-backend-0jf1.onrender.com/api/destinations/');
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/destinations/`);
 
         setDestinations(response.data);
         setLoading(false);
