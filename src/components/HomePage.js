@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { ShuffleHero } from './ui/shuffle-grid.jsx';
 import InfiniteGallery from './ui/3d-gallery-photography.jsx';
+import { AnimatedTestimonials } from './ui/animated-testimonials.jsx';
 import home1 from '../Assets/home1.jpg';
 import home2 from '../Assets/home2.jpg';
 import home3 from '../Assets/home3.jpg';
@@ -123,6 +124,48 @@ const HomePage = () => {
       {/* Hero Section */}
       <ShuffleHero />
 
+      {/* Testimonials Section */}
+      <section style={{ backgroundColor: '#f9fafb', padding: '2rem 0' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 className="fancy-title" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>What Our Travelers Say</h2>
+          <p style={{ color: '#6b7280', fontSize: '1.1rem' }}>Real experiences from our travel buddy community</p>
+        </div>
+        <AnimatedTestimonials
+          testimonials={[
+            {
+              quote: "Found my perfect travel buddy for my Bali trip! The matching system is spot-on. We had an amazing time exploring the beaches and temples together.",
+              name: "Sarah Johnson",
+              designation: "Adventure Traveler",
+              src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop",
+            },
+            {
+              quote: "The platform made it so easy to plan my European adventure with like-minded travelers. I met three amazing companions and we're already planning our next trip!",
+              name: "Mike Chen",
+              designation: "Solo Explorer",
+              src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop",
+            },
+            {
+              quote: "Best travel companion finder I've ever used. The compatibility matching is incredible - it felt like we'd known each other for years from day one.",
+              name: "Emma Davis",
+              designation: "Cultural Enthusiast",
+              src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop",
+            },
+            {
+              quote: "Great experience using Travel Buddy for my Southeast Asia trip. Found two awesome travel companions who shared my interest in photography and local cuisine.",
+              name: "James Wilson",
+              designation: "Photography Lover",
+              src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop",
+            },
+            {
+              quote: "As a solo female traveler, safety was my priority. Travel Buddy's verification system gave me peace of mind. Made lifelong friends on my trip to Japan!",
+              name: "Lisa Thompson",
+              designation: "Solo Female Traveler",
+              src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop",
+            },
+          ]}
+          autoplay={true}
+        />
+      </section>
       {/* 3D Gallery Section */}
       <section className="gallery-section" style={{ position: 'relative', height: '600px', width: '100%' }}>
         <InfiniteGallery
