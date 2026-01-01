@@ -12,6 +12,7 @@
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.9",
+    "clsx": "^2.1.1",
     "cross-spawn": "^7.0.6",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.18.0",
@@ -35,18 +36,18 @@
     "sass": "^1.86.0",
     "styled-components": "^6.1.17",
     "swiper": "^11.0.5",
+    "tailwind-merge": "^3.4.0",
     "web-vitals": "^2.1.4"
   },
-"scripts": {
-  "dev": "react-scripts start",
-  "start": "react-scripts start",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject"
-},
-
+  "scripts": {
+    "dev": "craco start",
+    "start": "craco start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -66,6 +67,14 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@craco/craco": "^7.1.0",
+    "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.23",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.9.3"
   }
 }

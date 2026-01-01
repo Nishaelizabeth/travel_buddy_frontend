@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
-import bgVideo from '../Assets/bg.mp4';
+import { ShuffleHero } from './ui/shuffle-grid.jsx';
 import homeVideo from '../Assets/homevideo.mp4';
 import home1 from '../Assets/home1.jpg';
 import home2 from '../Assets/home2.jpg';
@@ -21,8 +21,8 @@ import './HomePage.scss';
 // Import Google Font
 const GoogleFontLink = () => {
   return (
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   );
@@ -35,14 +35,14 @@ const HomePage = () => {
     link.href = 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-    
+
     return () => {
       document.head.removeChild(link);
     };
   }, []);
   const [latestReviews, setLatestReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Fetch latest reviews from the API
   useEffect(() => {
     const fetchLatestReviews = async () => {
@@ -55,10 +55,10 @@ const HomePage = () => {
         setLoading(false);
       }
     };
-    
+
     fetchLatestReviews();
   }, []);
-  
+
   // Fallback testimonials if no reviews are available
   const fallbackTestimonials = [
     {
@@ -90,7 +90,7 @@ const HomePage = () => {
       image: "https://randomuser.me/api/portraits/men/3.jpg"
     }
   ];
-  
+
   // Use latest reviews if available, otherwise use fallback testimonials
   const testimonials = latestReviews.length > 0 ? latestReviews : fallbackTestimonials;
 
@@ -121,20 +121,7 @@ const HomePage = () => {
   return (
     <div className="homepage">
       {/* Hero Section */}
-      <section className="hero">
-        <video autoPlay muted loop className="hero-video">
-          <source src={bgVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="hero-content">
-          <h1>Find Your Perfect Travel Buddy & Plan Your Next Adventure!</h1>
-          <p>Join a community of travelers, create or join trips, and meet like-minded companions effortlessly.</p>
-          <div className="hero-buttons">
-            <Link to="/register" className="primary-button">Sign Up Now</Link>
-            <Link to="/destinations" className="secondary-button">Explore Destinations</Link>
-          </div>
-        </div>
-      </section>
+      <ShuffleHero />
 
       {/* How It Works Section */}
       <section className="how-it-works-section">
@@ -226,7 +213,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Destination Showcase */}
       <section className="destination-showcase">
         <div className="section-header">
@@ -286,9 +273,9 @@ const HomePage = () => {
               <SwiperSlide key={review.id || index} className="review-slide">
                 <div className="review-card">
                   <div className="review-header">
-                    <img 
-                      src={review.user_profile_picture || review.image || 'https://via.placeholder.com/50'} 
-                      alt={review.user_name || review.name} 
+                    <img
+                      src={review.user_profile_picture || review.image || 'https://via.placeholder.com/50'}
+                      alt={review.user_name || review.name}
                       className="reviewer-image"
                       onError={(e) => { e.target.src = 'https://via.placeholder.com/50' }}
                     />
@@ -300,8 +287,8 @@ const HomePage = () => {
                       <div className="review-rating">
                         {[...Array(5)].map((_, i) => (
                           <span key={i}>
-                            {i < (review.rating || 5) ? 
-                              <FaStar className="star-filled" /> : 
+                            {i < (review.rating || 5) ?
+                              <FaStar className="star-filled" /> :
                               <FaRegStar className="star-empty" />}
                           </span>
                         ))}
