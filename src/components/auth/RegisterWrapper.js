@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Stepper from './Stepper';
 import RegisterStep1 from './RegisterStep1';
 import RegisterStep2 from './RegisterStep2';
 import RegisterStep3 from './RegisterStep3';
+import { AuthContainer, AuthCard, StepIndicator } from '../ui/auth-switch';
+
 
 const RegisterWrapper = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+
+  // Form state - PRESERVED
   const [formData, setFormData] = useState({
     full_name: '',
     username: '',
@@ -25,21 +28,28 @@ const RegisterWrapper = () => {
   const [loading, setLoading] = useState(false);
   const [backendErrors, setBackendErrors] = useState({});
 
-  // Auto-save form data to localStorage
+  // Auto-save form data to localStorage - PRESERVED
   useEffect(() => {
     localStorage.setItem('registrationData', JSON.stringify(formData));
   }, [formData]);
 
-  // Load saved form data on mount
+  // Load saved form data on mount - PRESERVED
   useEffect(() => {
     const savedData = localStorage.getItem('registrationData');
     if (savedData) {
-      setFormData(JSON.parse(savedData));
+      try {
+        const parsed = JSON.parse(savedData);
+        // Don't load profile_picture as it can't be serialized
+        const { profile_picture, ...rest } = parsed;
+        setFormData(prev => ({ ...prev, ...rest }));
+      } catch (e) {
+        console.log('Error loading saved data');
+      }
     }
   }, []);
 
+  // Step navigation handlers - PRESERVED
   const handleNext = () => {
-    // Clear backend errors when moving to next step
     setBackendErrors({});
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
@@ -52,16 +62,14 @@ const RegisterWrapper = () => {
     }
   };
 
+  // Form submission with API call - PRESERVED
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      // Create FormData object for file upload
       const formDataToSend = new FormData();
-      
-      // Log what we're about to send
+
       console.log('Form data before sending:', formData);
-      
-      // Add all form fields to FormData
+
       Object.keys(formData).forEach(key => {
         if (formData[key]) {
           if (key === 'dob') {
@@ -69,10 +77,9 @@ const RegisterWrapper = () => {
             formDataToSend.append(key, formattedDate);
             console.log(`Adding ${key}: ${formattedDate}`);
           } else if (key === 'profile_picture' && formData[key]) {
-            // Add profile picture to form data
             formDataToSend.append('profile_picture', formData[key]);
             console.log(`Adding profile_picture: ${formData[key].name}`);
-          } else if (key !== 'confirm_password') { // Skip confirm_password as it's not needed by the backend
+          } else if (key !== 'confirm_password') {
             formDataToSend.append(key, formData[key]);
             console.log(`Adding ${key}: ${formData[key]}`);
           }
@@ -80,40 +87,36 @@ const RegisterWrapper = () => {
       });
 
       console.log('Sending registration data with profile picture');
-      
-      // Use multipart/form-data content type for file uploads
 
       const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register/`, formDataToSend, {
-
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      
+
       console.log('Registration response:', response.data);
 
-      // Clear registration data from localStorage after successful registration
       localStorage.removeItem('registrationData');
-      
+
       toast.success('Registration successful! Please verify your email.');
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
       if (error.response && error.response.data) {
         console.error('Error response:', error.response.data);
-        
-        // Handle specific field errors (like username already exists)
+
+        // Handle specific field errors - PRESERVED
         if (error.response.data.username) {
           setBackendErrors({
             ...backendErrors,
             username: error.response.data.username[0]
           });
-          setCurrentStep(1); // Go back to first step where username is entered
+          setCurrentStep(1);
           toast.error(error.response.data.username[0]);
         } else if (error.response.data.email) {
           setBackendErrors({
             ...backendErrors,
             email: error.response.data.email[0]
           });
-          setCurrentStep(1); // Go back to first step where email is entered
+          setCurrentStep(1);
           toast.error(error.response.data.email[0]);
         } else if (error.response.data.message) {
           toast.error(error.response.data.message);
@@ -130,33 +133,69 @@ const RegisterWrapper = () => {
     }
   };
 
+  const stepLabels = ['Basic Info', 'Security', 'Profile'];
+
   const renderStep = () => {
+    const commonProps = {
+      formData,
+      setFormData,
+      errors,
+      setErrors,
+    };
+
     switch (currentStep) {
       case 1:
-        return <RegisterStep1 formData={formData} setFormData={setFormData} errors={errors} setErrors={setErrors} backendErrors={backendErrors} onNext={handleNext} />;
+        return (
+          <RegisterStep1
+            {...commonProps}
+            backendErrors={backendErrors}
+            onNext={handleNext}
+          />
+        );
       case 2:
-        return <RegisterStep2 formData={formData} setFormData={setFormData} errors={errors} setErrors={setErrors} onBack={handleBack} onNext={handleNext} />;
+        return (
+          <RegisterStep2
+            {...commonProps}
+            onBack={handleBack}
+            onNext={handleNext}
+          />
+        );
       case 3:
-        return <RegisterStep3 formData={formData} setFormData={setFormData} errors={errors} setErrors={setErrors} onBack={handleBack} onSubmit={handleSubmit} />;
+        return (
+          <RegisterStep3
+            {...commonProps}
+            onBack={handleBack}
+            onSubmit={handleSubmit}
+            loading={loading}
+          />
+        );
       default:
         return null;
     }
   };
 
   return (
-    <div style={{ 
-      maxWidth: '800px', 
-      margin: '0 auto', 
-      padding: '2rem',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}>
-      <Stepper currentStep={currentStep} totalSteps={3} />
-      <div style={{ width: '100%' }}>
-        {renderStep()}
-      </div>
-    </div>
+    <AuthContainer>
+      <AuthCard className="max-w-2xl">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join Travel Buddy!</h1>
+          <p className="text-gray-500">Create your account to explore and connect</p>
+        </div>
+
+        {/* Step Indicator */}
+        <StepIndicator
+          currentStep={currentStep}
+          totalSteps={3}
+          labels={stepLabels}
+        />
+
+        {/* Step Content */}
+        <div className="relative min-h-[400px]">
+          {renderStep()}
+        </div>
+      </AuthCard>
+    </AuthContainer>
   );
 };
 

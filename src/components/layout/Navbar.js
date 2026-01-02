@@ -16,7 +16,7 @@ const Navbar = () => {
         try {
             const refreshToken = localStorage.getItem('refreshToken');
             const token = localStorage.getItem('accessToken');
-            
+
             if (!refreshToken) {
                 console.warn('No refresh token found');
                 authLogout();
@@ -24,7 +24,7 @@ const Navbar = () => {
                 navigate('/');
                 return;
             }
-            
+
             // Call logout endpoint
 
             await fetch(`${process.env.REACT_APP_API_BASE_URL}/logout/`, {
@@ -107,9 +107,19 @@ const Navbar = () => {
                         </div>
                     </>
                 ) : (
-                    <div className="auth-buttons">
-                        <Link to="/login" className="login-button">Login</Link>
-                        <Link to="/register" className="signup-button">Sign Up</Link>
+                    <div className="auth-buttons flex items-center gap-3">
+                        <Link
+                            to="/login"
+                            className="px-4 py-2 text-gray-700 font-medium hover:text-blue-600 transition-colors"
+                        >
+                            Sign In
+                        </Link>
+                        <Link
+                            to="/register"
+                            className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-lg shadow-blue-500/30 hover:from-blue-600 hover:to-blue-700 transition-all"
+                        >
+                            Get Started
+                        </Link>
                     </div>
                 )}
             </div>

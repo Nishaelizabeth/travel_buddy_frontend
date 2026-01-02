@@ -305,7 +305,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
                     />
                 ) : (
                     <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px]"
+                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px] grid-flow-dense"
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
