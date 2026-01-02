@@ -20,6 +20,7 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^10.18.0",
     "lottie-react": "^2.4.1",
+    "lucide-react": "^0.562.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.9",
     "react-calendar": "^5.1.0",

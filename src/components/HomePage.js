@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { ShuffleHero } from './ui/shuffle-grid.jsx';
-import InfiniteGallery from './ui/3d-gallery-photography.jsx';
+import InteractiveBentoGallery from './ui/interactive-bento-gallery.jsx';
 import { AnimatedTestimonials } from './ui/animated-testimonials.jsx';
+import { CircularGallery } from './ui/circular-gallery.jsx';
 import home1 from '../Assets/home1.jpg';
 import home2 from '../Assets/home2.jpg';
 import home3 from '../Assets/home3.jpg';
@@ -166,28 +167,70 @@ const HomePage = () => {
           autoplay={true}
         />
       </section>
-      {/* 3D Gallery Section */}
-      <section className="gallery-section" style={{ position: 'relative', height: '600px', width: '100%' }}>
-        <InfiniteGallery
-          images={[
-            { src: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&auto=format&fit=crop', alt: 'Beach sunset' },
-            { src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&auto=format&fit=crop', alt: 'Mountain lake' },
-            { src: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&auto=format&fit=crop', alt: 'Travel adventure' },
-            { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&auto=format&fit=crop', alt: 'Nature landscape' },
-            { src: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&auto=format&fit=crop', alt: 'City skyline' },
-            { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop', alt: 'Tropical beach' },
-            { src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop', alt: 'Mountain view' },
-            { src: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&auto=format&fit=crop', alt: 'Forest path' },
+      {/* Interactive Bento Gallery Section */}
+      <section style={{ backgroundColor: '#ffffff', padding: '2rem 0' }}>
+        <InteractiveBentoGallery
+          mediaItems={[
+            {
+              id: 1,
+              type: "image",
+              title: "Anurag Mishra",
+              desc: "Driven, innovative, visionary",
+              url: "https://kxptt4m9j4.ufs.sh/f/9YHhEDeslzkcbP3rYTiXwH7Y106CepJOsoAgQjyFi3MUfDkh",
+              span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2",
+            },
+            {
+              id: 2,
+              type: "video",
+              title: "Dog Puppy",
+              desc: "Adorable loyal companion.",
+              url: "https://cdn.pixabay.com/video/2024/07/24/222837_large.mp4",
+              span: "md:col-span-2 md:row-span-2 col-span-1 sm:col-span-2 sm:row-span-2",
+            },
+            {
+              id: 3,
+              type: "image",
+              title: "Forest Path",
+              desc: "Mystical forest trail",
+              url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+              span: "md:col-span-1 md:row-span-3 sm:col-span-2 sm:row-span-2 ",
+            },
+            {
+              id: 4,
+              type: "image",
+              title: "Falling Leaves",
+              desc: "Autumn scenery",
+              url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2 ",
+            },
+            {
+              id: 5,
+              type: "video",
+              title: "Bird Parrot",
+              desc: "Vibrant feathered charm",
+              url: "https://cdn.pixabay.com/video/2020/07/30/46026-447087782_large.mp4",
+              span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2 ",
+            },
+            {
+              id: 6,
+              type: "image",
+              title: "Beach Paradise",
+              desc: "Sunny tropical beach",
+              url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+              span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2 ",
+            },
+            {
+              id: 7,
+              type: "video",
+              title: "Shiva Temple",
+              desc: "Peaceful Shiva sanctuary.",
+              url: "https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4",
+              span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2 ",
+            },
           ]}
-          speed={1.2}
-          visibleCount={12}
-          className="h-full w-full"
+          title="Gallery Shots Collection"
+          description="Drag and explore our curated collection of shots"
         />
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '12px', color: '#1f2937' }}>
-          <h1 style={{ fontFamily: 'serif', fontSize: '4rem', letterSpacing: '-0.02em', textShadow: '2px 2px 4px rgba(255,255,255,0.5)' }}>
-            <span style={{ fontStyle: 'italic' }}>Explore</span>
-          </h1>
-        </div>
       </section>
 
       {/* Why Travel with Us Section */}
@@ -240,33 +283,99 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Destination Showcase */}
-      <section className="destination-showcase">
-        <div className="section-header">
+      {/* Circular Destination Gallery */}
+      <section style={{ backgroundColor: '#ffffff', padding: '4rem 0', overflow: 'hidden' }}>
+        <div className="section-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h2 className="fancy-title">Discover Amazing Destinations</h2>
+          <p style={{ color: '#6b7280', fontSize: '1.1rem' }}>Scroll to explore our featured travel destinations</p>
         </div>
-        <div className="destination-grid">
-          <div className="destination-card large">
-            <img src={home4} alt="Beautiful destination" />
-            <div className="destination-info">
-              <h3>Tropical Paradise</h3>
-              <p>Experience breathtaking beaches and lush landscapes</p>
-            </div>
-          </div>
-          <div className="destination-card">
-            <img src={home5} alt="Urban adventure" />
-            <div className="destination-info">
-              <h3>Urban Exploration</h3>
-              <p>Discover vibrant city life and cultural hotspots</p>
-            </div>
-          </div>
-          <div className="destination-card">
-            <img src={home3} alt="Mountain adventure" />
-            <div className="destination-info">
-              <h3>Mountain Escape</h3>
-              <p>Find serenity in majestic mountain landscapes</p>
-            </div>
-          </div>
+        <div style={{ height: '500px', width: '100%', position: 'relative' }}>
+          <CircularGallery
+            items={[
+              {
+                common: 'Bali, Indonesia',
+                binomial: 'Tropical Paradise',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&auto=format&fit=crop&q=80',
+                  text: 'Beautiful Bali rice terraces',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Paris, France',
+                binomial: 'City of Lights',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&auto=format&fit=crop&q=80',
+                  text: 'Eiffel Tower at sunset',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Tokyo, Japan',
+                binomial: 'Ancient Meets Modern',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&auto=format&fit=crop&q=80',
+                  text: 'Tokyo cityscape at night',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Santorini, Greece',
+                binomial: 'Mediterranean Dream',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=900&auto=format&fit=crop&q=80',
+                  text: 'White buildings of Santorini',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Machu Picchu, Peru',
+                binomial: 'Lost City of Incas',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=900&auto=format&fit=crop&q=80',
+                  text: 'Ancient ruins of Machu Picchu',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Maldives',
+                binomial: 'Island Paradise',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=900&auto=format&fit=crop&q=80',
+                  text: 'Crystal clear waters of Maldives',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Swiss Alps',
+                binomial: 'Mountain Majesty',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&auto=format&fit=crop&q=80',
+                  text: 'Snow-capped Swiss Alps',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+              {
+                common: 'Dubai, UAE',
+                binomial: 'Future City',
+                photo: {
+                  url: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&auto=format&fit=crop&q=80',
+                  text: 'Dubai skyline with Burj Khalifa',
+                  pos: 'center',
+                  by: 'Unsplash'
+                }
+              },
+            ]}
+            radius={450}
+            autoRotateSpeed={0.015}
+          />
         </div>
       </section>
 
